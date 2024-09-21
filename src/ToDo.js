@@ -31,4 +31,11 @@ const ToDoController = ()=>{
     const saveTasksToStorage = ()=>{
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }
+
+    const getTasksFromStorage = ()=>{
+        if(localStorage.getItem('tasks'))
+            tasks = JSON.parse(localStorage.getItem('tasks'));
+
+        return tasks;
+    }
 }
