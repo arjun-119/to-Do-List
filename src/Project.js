@@ -34,6 +34,8 @@ const projectController = () => {
   const deleteProject = (id) => {
     const toDelete = projects.findIndex((project) => project.id === id);
     projects.splice(toDelete, 1);
+
+    saveProjectToStorage();
   };
 
   return {
@@ -43,3 +45,6 @@ const projectController = () => {
     deleteProject,
   };
 };
+
+
+export default projectController();

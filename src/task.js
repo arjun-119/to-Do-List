@@ -1,4 +1,4 @@
-const ToDoController = ()=>{
+const taskController = ()=>{
     let tasks = [{
         id: 67890,
         title: "Get Better", 
@@ -38,4 +38,20 @@ const ToDoController = ()=>{
 
         return tasks;
     }
+
+    const deleteTask = (id)=>{
+        const taskToDelete = tasks.find(task=> task.id === id);
+        tasks.splice(tasks.indexOf(taskToDelete),1);
+
+        saveTasksToStorage();
+    }
+
+    return{
+        createTask,
+        saveTasksToStorage,
+        getTasksFromStorage,
+        deleteTask
+    }
 }
+
+export default taskController();
