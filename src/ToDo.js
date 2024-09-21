@@ -27,4 +27,8 @@ const ToDoController = ()=>{
         tasks.push(task);
         saveTasksToStorage();
     }
+
+    const saveTasksToStorage = ()=>{
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
 }
