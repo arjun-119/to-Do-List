@@ -63,6 +63,22 @@ const taskController = ()=>{
         saveTasksToStorage();
     }
 
+    const updateTask=(id, title, description, dueDate, priority, project)=>{
+        const taskToUpdate = tasks.find(task=>task.id === id);
+        taskToUpdate.title = title;
+        taskToUpdate.description = description;
+        taskToUpdate.dueDate = dueDate;
+        taskToUpdate.priority = priority;
+        taskToUpdate.project = {
+            id:project.id,
+            name:project.name
+        }
+
+        saveTasksToStorage();
+
+        return taskToUpdate;
+    }
+
     return{
         createTask,
         saveTasksToStorage,
