@@ -8,7 +8,8 @@ const taskController = ()=>{
         project : {
             id: 12344,
             name: "Default"
-        }
+        },
+        completed: false,
     }
     ];
 
@@ -32,9 +33,12 @@ const taskController = ()=>{
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }
 
-    const getTasksFromStorage = ()=>{
+    const getTasksFromStorage = (projectId)=>{
         if(localStorage.getItem('tasks'))
             tasks = JSON.parse(localStorage.getItem('tasks'));
+
+        if(projectId)
+            return tasks.filter(task=>task.project.id === projectId);        
 
         return tasks;
     }
@@ -46,11 +50,26 @@ const taskController = ()=>{
         saveTasksToStorage();
     }
 
+    const getTask = (projectId)=>{
+        if(projectId)
+            return tasks.filter((task)=>task.project.id === projectId);
+
+        return tasks;
+    }
+
+    const completeTask = (id)=>{
+        const taskToComplete = tasks.filter(task=> task.id === id);
+        taskToComplete.completed = !taskToComplete.completed;
+        saveTasksToStorage();
+    }
+
     return{
         createTask,
         saveTasksToStorage,
         getTasksFromStorage,
-        deleteTask
+        deleteTask,
+        getTask,
+        completeTask
     }
 }
 
