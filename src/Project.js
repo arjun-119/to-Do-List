@@ -1,4 +1,5 @@
 import { date } from "drizzle-orm-pg";
+import taskController from "./task"
 
 const projectController = () => {
   let projects = [
@@ -53,9 +54,9 @@ const projectController = () => {
     const toDelete = projects.findIndex((project) => project.id === id);
     projects.splice(toDelete, 1);
 
-    taskController()
+    taskController
       .getTask()
-      .forEach((task) => taskController().deleteTask(task.id));
+      .forEach((task) => taskController.deleteTask(task.id));
 
     saveProjectToStorage();
   };

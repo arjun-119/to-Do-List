@@ -1,31 +1,32 @@
-body{
+body {
     margin: 0;
 }
 
-.head{
+.head {
     background-color: #141416;
-    padding:25px;
+    padding: 25px;
     margin: 0;
 }
 
-.body{
+.body {
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr 3fr;
 }
-.sidebar{
+
+.sidebar {
     background-color: grey;
 }
 
-.main-display{
-    padding:12px;
-    background-color: white ;
+.main-display {
+    padding: 12px;
+    background-color: white;
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-    grid-gap:10px;
-     }
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px;
+}
 
-.task-item{
+.task-item {
     background-color: #f89e17;
     height: 200px;
     border-radius: 30px;
