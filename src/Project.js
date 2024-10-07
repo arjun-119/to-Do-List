@@ -1,5 +1,5 @@
 import { date } from "drizzle-orm-pg";
-import taskController from "./task"
+import taskController from "./task";
 
 const projectController = () => {
   let projects = [
@@ -32,23 +32,23 @@ const projectController = () => {
     return projects;
   };
 
-  const addTaskToProject = (id, task)=>{
-      const updateProject = projects.find(project=> project.id === id);
+  const addTaskToProject = (id, task) => {
+    const updateProject = projects.find((project) => project.id === id);
 
-      const taskInProject = updateProject.find(toDo=> toDo.id === task.id)
+    const taskInProject = updateProject.find((toDo) => toDo.id === task.id);
 
-      if(taskInProject){
-        const taskIndex = updateProject.tasks.findIndex(index=> index.id === task.id);
-        updateProject.tasks[taskIndex] = task;
-      }
-      else
-      {
-        updateProject.tasks.push(task);
-      }
-      saveProjectToStorage();
-  }
+    if (taskInProject) {
+      const taskIndex = updateProject.tasks.findIndex(
+        (index) => index.id === task.id
+      );
+      updateProject.tasks[taskIndex] = task;
+    } else {
+      updateProject.tasks.push(task);
+    }
+    saveProjectToStorage();
+  };
 
-  const getProjects = ()=> projects;
+  const getProjects = () => projects;
 
   const deleteProject = (id) => {
     const toDelete = projects.findIndex((project) => project.id === id);
