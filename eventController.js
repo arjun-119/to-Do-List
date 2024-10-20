@@ -5,27 +5,41 @@ const eventController = () => {
   const addProject = () => {
     const addProjectBtn = document.querySelector(".addProject");
     addProjectBtn.addEventListener("click", () => {
-      let projectName = document.createElement("input");
-      projectName.type = "text";
-      projectName.id = "add-project-name";
-      projectName.placeholder = "Type your new projects title";
+      let projectNameInput = document.createElement("input");
+      projectNameInput.type = "text";
+      projectNameInput.id = "add-project-name";
+      projectNameInput.placeholder = "Type your new projects title";
 
       const projectList = document.querySelector(".projectList");
       if (!projectList.querySelector("input")) {
-        projectList.appendChild(projectName);
-        projectName.focus();
+        projectList.appendChild(projectNameInput);
+        projectNameInput.focus();
         addProjectBtn.remove();
       }
 
-      projectName.addEventListener("keydown", (event) => {
+      projectNameInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
-          const newProjectName = projectName.value
-            ? projectName.value
+          const newprojectNameInput = projectNameInput.value
+            ? projectNameInput.value
             : "Untitled List";
-          projectController.createProject(newProjectName);
+          projectController.createProject(newprojectNameInput);
           addProject();
         }
+
+        if(event.key === 'Escape'){
+            projectNameInput.blur();
+        }
       });
+
+      const removeProjectInput = ()=>{
+        projectNameInput.remove();
+        projectNameInput = null;
+        projectList.appendChild('addProjectBtn');
+      };
+
+      projectNameInput.addEventListener('focusout', removeProjectInput);
     });
   };
+
+  
 };
