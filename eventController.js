@@ -41,5 +41,16 @@ const eventController = () => {
     });
   };
 
-  
+  const openProject = ()=>{
+    const projectItems = document.querySelectorAll('.project-item');
+    const projects = projectController.getProjects();
+    projectItems.forEach((projectItem, index)=>{
+      projectItem.addEventListener('click', ()=> {
+        ScreenController.loadTasks(lists[index]);
+        ScreenController.loadProjects();
+        loadEventListeners(projects[index]);
+      });
+    });  
+  }
+
 };
