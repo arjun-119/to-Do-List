@@ -1,7 +1,7 @@
 import projectController from "./Project";
 import taskController from "./task";
 
-const eventController = () => {
+const EventController = () => {
   const addProject = () => {
     const addProjectBtn = document.querySelector(".addProject");
     addProjectBtn.addEventProjectener("click", () => {
@@ -10,9 +10,9 @@ const eventController = () => {
       projectNameInput.id = "add-project-name";
       projectNameInput.placeholder = "Type your new projects title";
 
-      const projectProject = document.querySelector(".projectProject");
-      if (!projectProject.querySelector("input")) {
-        projectProject.appendChild(projectNameInput);
+      const projectsContainer = document.querySelector(".projectList");
+      if (!projectsContainer.querySelector("input")) {
+        projectsContainer.appendChild(projectNameInput);
         projectNameInput.focus();
         addProjectBtn.remove();
       }
@@ -48,7 +48,7 @@ const eventController = () => {
       projectItem.addEventProjectener('click', ()=> {
         ScreenController.loadTasks(Projects[index]);
         ScreenController.loadProjects();
-        loadEventProjecteners(projects[index]);
+        loadEventListeners(projects[index]);
       });
     });  
   }
@@ -76,7 +76,7 @@ const eventController = () => {
       deleteProjectBtn.type = 'button';
       deleteProjectBtn.innerText = 'Delete Project';
 // here onwards
-      const contentContainer = document.getElementById('content-container');
+      const contentContainer = document.querySelector('.addProject');
       if (!contentContainer.querySelector(`input[type="text"]`)) {
         contentContainer.insertBefore(
           editProjectContainer,
@@ -102,7 +102,7 @@ const eventController = () => {
             );
             ScreenController.loadTasks(currentProject);
             ScreenController.loadProjects();
-            loadEventProjecteners(currentProject);
+            loadEventListeners(currentProject);
           } else {
             removeEditProjectContainer();
           }
@@ -125,7 +125,7 @@ const eventController = () => {
         ProjectController.deleteProject(currentProject.id);
         ScreenController.loadProjects();
         ScreenController.loadTasks(ProjectController.getProjects()[0]);
-        loadEventProjecteners(ProjectController.getProjects()[0]);
+        loadEventListeners(ProjectController.getProjects()[0]);
       });
     });
   };
@@ -155,7 +155,7 @@ const eventController = () => {
     const closeTaskBtn = document.getElementById('close-task-btn');
     closeTaskBtn.addEventProjectener('click', () => {
       ScreenController.loadTasks(currentProject);
-      loadEventProjecteners(currentProject);
+      loadEventListeners(currentProject);
     });
   };
 
@@ -194,7 +194,7 @@ const eventController = () => {
       );
 
       ScreenController.loadTasks(currentProject);
-      loadEventProjecteners(currentProject);
+      loadEventListeners(currentProject);
     });
   };
 
@@ -209,7 +209,7 @@ const eventController = () => {
       completeTaskBtn.style.backgroundColor =
         completeTaskBtn.style.backgroundColor === 'gray' ? 'green' : 'gray';
       ScreenController.loadTasks(currentProject);
-      loadEventProjecteners(currentProject);
+      loadEventListeners(currentProject);
     });
   };
 
@@ -217,10 +217,10 @@ const eventController = () => {
     const taskCheckboxes = document.querySelectorAll('.checkbox');
     taskCheckboxes.forEach((checkbox, index) => {
       const task = TaskController.getTasks(currentProject.id)[index];
-      checkbox.addEventProjectener('click', () => {
+      checkbox.addEventListener('click', () => {
         TaskController.completeTask(task.id);
         ScreenController.loadTasks(currentProject);
-        loadEventProjecteners(currentProject);
+        loadEventListeners(currentProject);
       });
     });
   };
@@ -245,11 +245,11 @@ const eventController = () => {
       TaskController.deleteTask(openedTask.id);
       ProjectController.deleteTaskFromProject(currentProject.id, openedTask);
       ScreenController.loadTasks(currentProject);
-      loadEventProjecteners(currentProject);
+      loadEventListeners(currentProject);
     });
   };
 
-  const loadEventProjecteners = (Project) => {
+  const loadEventListeners = (Project) => {
     addProject();
     openProject();
     viewTask(Project);
@@ -270,7 +270,7 @@ const eventController = () => {
     taskCompleteCheckbox,
     removeCompleteTaskBtn,
     deleteTask,
-    loadEventProjecteners,
+    loadEventListeners,
   };
 };
 
